@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 class TransformerManager(QObject):
     sig_transformed_pixmap_changed = Signal()
 
-    def __init__(self, parent: QObject=None):
+    def __init__(self, parent: QObject = None):
         QObject.__init__(self, parent)
         self._pixmap: QPixmap = QPixmap()
         self._transformed_pixmap: QPixmap = QPixmap()
@@ -38,7 +38,7 @@ class TransformerManager(QObject):
 
     def transform(self) -> None:
         if not self._pixmap:
-            logger.warn(f'pixmap is invalid')
+            logger.warn(f"pixmap is invalid")
             return
         pixmap = self._pixmap
         for tr in self._transformers:

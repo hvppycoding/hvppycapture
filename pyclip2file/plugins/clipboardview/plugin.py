@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 
 
 class ClipboardViewPlugin(Plugin):
-    NAME = 'clipboard_view'
+    NAME = "clipboard_view"
     REQUIRES = [Plugins.ClipboardWatcher, Plugins.Editor]
 
     def on_initialize(self):
@@ -33,13 +33,17 @@ class ClipboardViewPlugin(Plugin):
 
     @on_plugin_available(plugin=Plugins.ClipboardWatcher)
     def on_clipboard_plugin_available(self):
-        clipboard_plugin: ClipboardWatcherPlugin = self.get_plugin(Plugins.ClipboardWatcher)
+        clipboard_plugin: ClipboardWatcherPlugin = self.get_plugin(
+            Plugins.ClipboardWatcher
+        )
         clipboard_plugin.sig_clipboard_changed.connect(self.on_clipboard_changed)
         self.on_clipboard_changed()
 
     @Slot()
     def on_clipboard_changed(self):
-        clipboard_plugin: ClipboardWatcherPlugin = self.get_plugin(Plugins.ClipboardWatcher)
+        clipboard_plugin: ClipboardWatcherPlugin = self.get_plugin(
+            Plugins.ClipboardWatcher
+        )
         self._pixmap = clipboard_plugin.pixmap
         if self._pixmap and self._viewer:
             self._viewer.setPixmap(self._pixmap)

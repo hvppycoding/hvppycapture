@@ -6,10 +6,10 @@ from pyclip2file.widgets.pixmapviewer import PixmapViewer
 
 class PreviewPanel(GroupBoxEditorPanel):
     def __init__(self):
-        GroupBoxEditorPanel.__init__(self, 'B.Preview')
-        self.setTitle('Preview')
+        GroupBoxEditorPanel.__init__(self, "B.Preview")
+        self.setTitle("Preview")
         lyt = QVBoxLayout()
-        #lyt.setContentsMargins(QMargins(0, 0, 0, 0))
+        # lyt.setContentsMargins(QMargins(0, 0, 0, 0))
         self.setLayout(lyt)
         self._viewer = PixmapViewer()
         lyt.addWidget(self._viewer)

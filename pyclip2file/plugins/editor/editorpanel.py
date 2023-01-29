@@ -1,5 +1,6 @@
 from PySide6.QtWidgets import QWidget, QGroupBox
 
+
 class EditorPanelMixin:
     def __init__(self, key: str):
         self._key: str = key

@@ -13,18 +13,18 @@ class FileExporter(GroupBoxEditorPanel):
     sig_save_requested = Signal(str)
 
     def __init__(self):
-        GroupBoxEditorPanel.__init__(self, 'Z.FileExporter')
+        GroupBoxEditorPanel.__init__(self, "Z.FileExporter")
 
-        self.setTitle('Export')
-        
+        self.setTitle("Export")
+
         lyt = QHBoxLayout()
         self.setLayout(lyt)
         self.path_edit = QLineEdit()
-        self.variable_button = QPushButton('Add Variable...')
-        self.browse_button = QPushButton('Browse...')
-        self.save_button = QPushButton('Save')
+        self.variable_button = QPushButton("Add Variable...")
+        self.browse_button = QPushButton("Browse...")
+        self.save_button = QPushButton("Save")
         lyt.addWidget(self.path_edit)
-        #lyt.addWidget(self.variable_button)
+        # lyt.addWidget(self.variable_button)
         lyt.addWidget(self.browse_button)
         lyt.addWidget(self.save_button)
 
@@ -37,13 +37,13 @@ class FileExporter(GroupBoxEditorPanel):
 
     @Slot()
     def on_browse_button_clicked(self):
-        path, ext = QFileDialog.getSaveFileName(self, 'Export')
+        path, ext = QFileDialog.getSaveFileName(self, "Export")
         if path:
             self.path_edit.setText(path)
 
     @Slot()
     def on_save_button_clicked(self):
         if not self.path_edit.text():
-            logger.warn('path not entered')
+            logger.warn("path not entered")
             return
         self.sig_save_requested.emit(self.path_edit.text())

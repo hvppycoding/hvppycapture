@@ -5,8 +5,9 @@ from pyclip2file.plugins.editor.editorpanel import EditorPanelMixin
 
 logger = logging.getLogger(__name__)
 
+
 class EditorPlugin(Plugin):
-    NAME = 'editor'
+    NAME = "editor"
 
     def on_initialize(self):
         self._editor_widget = EditorWidget()

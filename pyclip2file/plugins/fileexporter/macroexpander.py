@@ -15,4 +15,5 @@ class MacroExpander:
 
 def datetime_expander():
     import datetime
-    return datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
+
+    return datetime.datetime.now().strftime("%Y%m%d_%H%M%S")

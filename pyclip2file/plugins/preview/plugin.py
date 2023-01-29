@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 
 
 class PreviewPlugin(Plugin):
-    NAME = 'preview'
+    NAME = "preview"
     REQUIRES = [Plugins.Transformer, Plugins.Editor]
 
     def on_initialize(self):
@@ -23,7 +23,7 @@ class PreviewPlugin(Plugin):
 
     @on_plugin_available(plugin=Plugins.Editor)
     def on_editor_plugin_available(self):
-        logger.warn('editor available!')
+        logger.warn("editor available!")
         editor_plugin: EditorPlugin = self.get_plugin(Plugins.Editor)
 
         if not self._viewer:
@@ -34,9 +34,11 @@ class PreviewPlugin(Plugin):
 
     @on_plugin_available(plugin=Plugins.Transformer)
     def on_transformer_plugin_available(self):
-        logger.warn('transformer available!')
+        logger.warn("transformer available!")
         transformer_plugin: TransformerPlugin = self.get_plugin(Plugins.Transformer)
-        transformer_plugin.sig_transformed_pixmap_changed.connect(self.on_transformed_pixmap_changed)
+        transformer_plugin.sig_transformed_pixmap_changed.connect(
+            self.on_transformed_pixmap_changed
+        )
         self.on_transformed_pixmap_changed()
 
     @Slot()

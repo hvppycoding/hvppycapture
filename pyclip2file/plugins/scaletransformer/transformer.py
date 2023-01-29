@@ -10,10 +10,11 @@ from pyclip2file.plugins.transformer.basetransformer import BaseTransformer
 logger = logging.getLogger(__name__)
 # logger.setLevel(logging.DEBUG)
 
-class ScaleTransformer(BaseTransformer):
-    ID = 'A.Scale'
 
-    def __init__(self, parent: QObject=None):
+class ScaleTransformer(BaseTransformer):
+    ID = "A.Scale"
+
+    def __init__(self, parent: QObject = None):
         # TODO: Load Settings
         BaseTransformer.__init__(self, parent)
         self._enabled = False
@@ -29,15 +30,15 @@ class ScaleTransformer(BaseTransformer):
         return scaled_pixmap
 
     def add_to_layout(self, layout_builder: LayoutBuilder) -> LayoutBuilder:
-        logger.debug(f'add_to_layout {layout_builder}')
+        logger.debug(f"add_to_layout {layout_builder}")
         if not self._checkbox:
-            self._checkbox = QCheckBox('Scale Width:')
+            self._checkbox = QCheckBox("Scale Width:")
             self._checkbox.setChecked(self._enabled)
             self._checkbox.toggled.connect(self.on_checkbox_toggled)
         layout_builder.add_widget(self._checkbox)
         if not self._width_edit:
             self._width_edit = QSpinBox()
-            self._width_edit.setSuffix('px')
+            self._width_edit.setSuffix("px")
             self._width_edit.setMinimum(1)
             self._width_edit.setMaximum(99999)
             self._width_edit.setValue(self._width)

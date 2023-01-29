@@ -6,13 +6,14 @@ class Plugins:
     """
     Convenience class for accessing internal plugins.
     """
-    ClipboardView = 'clipboard_view'
-    ClipboardWatcher = 'clipboard_watcher'
-    Editor = 'editor'
-    FileExporter = 'file_exporter'
-    Preview = 'preview'
-    ScaleTransformer = 'scale_transformer'
-    Transformer = 'transformer'
+
+    ClipboardView = "clipboard_view"
+    ClipboardWatcher = "clipboard_watcher"
+    Editor = "editor"
+    FileExporter = "file_exporter"
+    Preview = "preview"
+    ScaleTransformer = "scale_transformer"
+    Transformer = "transformer"
 
 
 class Plugin(QObject, PluginObserver):
@@ -30,7 +31,6 @@ class Plugin(QObject, PluginObserver):
     # If a plugin is using a widget from another plugin, that other
     # must be declared as a required dependency.
     REQUIRES = []
-
 
     sig_plugin_ready = Signal()
     """
@@ -51,15 +51,15 @@ class Plugin(QObject, PluginObserver):
             except Exception as e:
                 raise e
         else:
-            raise Exception(f'Plugin {plugin_name} not part of REQUIRES!')
+            raise Exception(f"Plugin {plugin_name} not part of REQUIRES!")
 
     def initialize(self):
         self.on_initialize()
         self.sig_plugin_ready.emit()
-        
+
     def on_initialize(self):
         raise NotImplementedError(
-            f'The plugin {type(self)} is missing an implementation of on_initialize'
+            f"The plugin {type(self)} is missing an implementation of on_initialize"
         )
 
     def before_mainwindow_visible(self):
