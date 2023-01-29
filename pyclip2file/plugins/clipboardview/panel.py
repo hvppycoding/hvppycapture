@@ -6,8 +6,8 @@ from pyclip2file.widgets.pixmapviewer import PixmapViewer
 
 class ClipboardViewPanel(GroupBoxEditorPanel):
     def __init__(self):
-        GroupBoxEditorPanel.__init__(self, 'A.ClipboardView')
-        self.setTitle('Clipboard')
+        GroupBoxEditorPanel.__init__(self, "A.ClipboardView")
+        self.setTitle("Clipboard")
         lyt = QVBoxLayout()
         self.setLayout(lyt)
         self._viewer = PixmapViewer()

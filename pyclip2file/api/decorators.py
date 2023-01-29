@@ -1,8 +1,8 @@
 from typing import Callable, Optional
 import functools
 
-def on_plugin_available(func: Callable = None,
-                        plugin: Optional[str] = None):
+
+def on_plugin_available(func: Callable = None, plugin: Optional[str] = None):
     """
     Method decorator used to handle plugin availability.
 
@@ -25,9 +25,9 @@ def on_plugin_available(func: Callable = None,
     """
     if func is None:
         return functools.partial(on_plugin_available, plugin=plugin)
-    
+
     if plugin is None:
-        plugin = '__all'
+        plugin = "__all"
 
     func._plugin_listen = plugin
     return func

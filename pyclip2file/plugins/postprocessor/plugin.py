@@ -12,19 +12,18 @@ from pyclip2file.plugins.editor.editorpanel import GroupBoxEditorPanel
 from pyclip2file.widgets.layoutbuilder import LayoutBuilder
 
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
+# logger.setLevel(logging.DEBUG)
 
 
 class PostProcessorPanel(GroupBoxEditorPanel):
     def __init__(self):
-        GroupBoxEditorPanel.__init__(self, 'Z2.Post-processor')
-        self.setTitle('Post-process')
+        GroupBoxEditorPanel.__init__(self, "Z2.Post-processor")
+        self.setTitle("Post-process")
 
 
 class PostProcessorPlugin(Plugin):
     NAME = "post_processor"
     REQUIRES = [Plugins.Editor, Plugins.FileExporter]
-
 
     sig_transformed_pixmap_changed = Signal()
 
@@ -52,5 +51,5 @@ class PostProcessorPlugin(Plugin):
 
     @Slot(str)
     def on_file_exported(self, path: str):
-        logger.debug(f'on_file_exported({path})')
+        logger.debug(f"on_file_exported({path})")
         self._engine.process(path)
