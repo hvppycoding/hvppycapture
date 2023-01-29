@@ -15,3 +15,10 @@ pyclip2file is a program that saves clipboard images to files.
 - Plugin system(reference: spyder IDE)
 
 ![capture v0.0.2](doc/images/v002_capture.png)
+
+## v0.0.3
+
+- Added preview window
+- Added post-process feature
+
+![v003_capture.png](doc/images/v003_capture.png)
