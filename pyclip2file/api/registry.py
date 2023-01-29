@@ -35,7 +35,7 @@ class PluginRegistry(QObject):
             plugin_instance = self.plugin_registry[plugin_name]
             return plugin_instance
         else:
-            raise Exception(f"Plugin {plugin_name} was not found in the registry")
+            raise Exception(f'Plugin {plugin_name} was not found in the registry')
 
     def register_plugin(self, main_window: Any, PluginClass: Type[Plugin]) -> Plugin:
         """
@@ -55,7 +55,7 @@ class PluginRegistry(QObject):
             The instance of the registered plugin.
         """
         if not issubclass(PluginClass, Plugin):
-            raise TypeError(f"{PluginClass} does not inherit from {Plugin}")
+            raise TypeError(f'{PluginClass} does not inherit from {Plugin}')
         instance = self._initiate_plugin(main_window, PluginClass)
         return instance
 
@@ -65,7 +65,7 @@ class PluginRegistry(QObject):
         self._update_plugin_info(plugin_name, required_plugins)
         plugin_instance = PluginClass(main_window)
         self.plugin_registry[plugin_name] = plugin_instance
-        logger.info(f"Registered {plugin_name}")
+        logger.info(f'Registered {plugin_name}')
         plugin_instance.sig_plugin_ready.connect(
             lambda: self.notify_plugin_availablity(plugin_name)
         )
@@ -83,7 +83,7 @@ class PluginRegistry(QObject):
         plugin_name: str
             Name of the plugin that is available.
         """
-        logger.info(f"Plugin {plugin_name} has finished loading sending notifications")
+        logger.info(f'Plugin {plugin_name} has finished loading sending notifications')
 
         self.plugin_availability[plugin_name] = True
 
@@ -91,10 +91,11 @@ class PluginRegistry(QObject):
 
         for plugin in plugin_dependents:
             if plugin in self.plugin_registry:
-                logger.info(f"Notifying {plugin}._on_plugin_available({plugin_name})")
+                logger.info(f'Notifying {plugin}._on_plugin_available({plugin_name})')
                 plugin_instance = self.plugin_registry[plugin]
                 plugin_instance._on_plugin_available(plugin_name)
 
+    
     def _notify_plugin_dependencies(self, plugin_name: str) -> None:
         """Notify a plugin of its available dependencies."""
         plugin_instance = self.plugin_registry[plugin_name]
@@ -102,7 +103,7 @@ class PluginRegistry(QObject):
 
         for plugin in plugin_dependencies:
             if self.plugin_availability.get(plugin, False):
-                logger.info(f"Notifying {plugin_name}._on_plugin_available({plugin})")
+                logger.info(f'Notifying {plugin_name}._on_plugin_available({plugin})')
                 plugin_instance._on_plugin_available(plugin)
 
     def _update_plugin_info(self, plugin_name: str, plugin_dependencies: List[str]):
@@ -138,7 +139,7 @@ class PluginRegistry(QObject):
             If True, the plugin name is contained on the registry, False otherwise.
         """
         return plugin_name in self.plugin_registry
-
+    
     def __iter__(self):
         return iter(self.plugin_registry)
 
