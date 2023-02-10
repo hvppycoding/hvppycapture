@@ -1,6 +1,6 @@
-# pyclip2file
+# hvppycapture
 
-pyclip2file is a program that saves clipboard images to files.
+hvppycapture is a program that saves clipboard images to files.
 
 ## v0.0.1
 
