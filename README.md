@@ -22,3 +22,7 @@ hvppycapture is a program that saves clipboard images to files.
 - Added post-process feature
 
 ![v003_capture.png](doc/images/v003_capture.png)
+
+## v0.0.4
+
+- Changed this project's name(pyclip2file→hvppycapture)
