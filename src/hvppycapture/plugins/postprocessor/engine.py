@@ -1,6 +1,6 @@
 import logging
 from typing import Optional
-from PySide6.QtCore import QObject, Signal, Slot
+from PySide6.QtCore import QObject, QSettings
 from PySide6.QtWidgets import QPlainTextEdit, QLabel
 from hvppycapture.widgets.layoutbuilder import LayoutBuilder
 
@@ -9,6 +9,8 @@ logger = logging.getLogger(__name__)
 
 
 class PostProcessorEngine(QObject):
+    FORMAT_KEY = "format"
+    
     def __init__(self, parent: QObject = None) -> None:
         self._format = ""
         self._result = ""
@@ -30,9 +32,24 @@ class PostProcessorEngine(QObject):
             self._result_viewer.setReadOnly(True)
         layout_builder.add_widget(self._result_viewer)
         layout_builder.finish_row()
+        
+        from hvppycapture.plugins.postprocessor.plugin import PostProcessorPlugin
+        settings: QSettings = QSettings()
+        settings.beginGroup(PostProcessorPlugin.NAME)
+        format_txt = settings.value(PostProcessorEngine.FORMAT_KEY, "")
+        self._format_editor.setPlainText(format_txt)
+        settings.endGroup()
 
     def process(self, path: str) -> None:
         self._format = self._format_editor.toPlainText()
+        
+        from hvppycapture.plugins.postprocessor.plugin import PostProcessorPlugin
+        settings: QSettings = QSettings()
+        settings.beginGroup(PostProcessorPlugin.NAME)
+        settings.setValue(PostProcessorEngine.FORMAT_KEY, self._format)
+        settings.endGroup()
+        logger.debug(f"Settings: {settings.fileName()}")
+
         import os
 
         # /path/to/file.txt
