@@ -25,7 +25,6 @@ class PostProcessorPlugin(Plugin):
     NAME = "post_processor"
     REQUIRES = [Plugins.Editor, Plugins.FileExporter]
 
-    sig_transformed_pixmap_changed = Signal()
 
     def on_initialize(self):
         self._engine: Optional[PostProcessorEngine] = PostProcessorEngine()

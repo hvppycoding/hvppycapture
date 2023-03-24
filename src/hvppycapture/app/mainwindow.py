@@ -57,6 +57,16 @@ def setup_logger(filepath: str = "", use_stream: bool = True):
 def main():
     setup_logger()
     app = QApplication()
+    
+    from hvppycapture import __author__
+    app.setOrganizationName(__author__)
+    
+    from hvppycapture import __app_name__
+    app.setApplicationName(__app_name__)
+    
+    from hvppycapture import __version__
+    app.setApplicationVersion(__version__)
+    
     mainwindow = MainWindow()
     mainwindow.pre_visible_setup()
     mainwindow.show()
