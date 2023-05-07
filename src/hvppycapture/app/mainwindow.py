@@ -26,6 +26,7 @@ class MainWindow(QMainWindow):
         plugins = find_plugins()
         for plugin in list(plugins.values())[::-1]:
             logger.info(f"Registering Plugin: {plugin.NAME}")
+
             PLUGIN_REGISTRY.register_plugin(self, plugin)
 
     def pre_visible_setup(self):
