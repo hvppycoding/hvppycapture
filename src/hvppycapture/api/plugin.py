@@ -14,6 +14,7 @@ class Plugins:
     Preview = "preview"
     ScaleTransformer = "scale_transformer"
     Transformer = "transformer"
+    OCR = "ocr"
 
 
 class Plugin(QObject, PluginObserver):

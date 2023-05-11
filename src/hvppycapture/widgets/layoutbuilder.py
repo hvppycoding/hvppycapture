@@ -4,11 +4,12 @@ from PySide6.QtWidgets import QWidget, QGridLayout, QLayoutItem
 
 
 logger = logging.getLogger(__name__)
-# logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.DEBUG)
 
 
 class SpecialTypes:
     Break = "break"
+    Space = "space"
 
 
 class LayoutItem:
@@ -52,6 +53,10 @@ class LayoutBuilder:
     def add_widget(self, widget: QWidget, span: int = 1):
         self.add_item(LayoutItem(widget=widget, span=span))
         return self
+    
+    def add_space(self, span: int = 1):
+        self.add_item(LayoutItem(special_type=SpecialTypes.Space, span=span))
+        return self
 
     def finish_row(self):
         self.add_item(LayoutItem(special_type=SpecialTypes.Break))
@@ -85,6 +90,7 @@ class LayoutBuilder:
                 grid_layout.addWidget(
                     item.widget, current_row, current_column, 1, item.span
                 )
+                logger.info(f"{__class__}.addWidget Done")
             elif item.layout:
                 logger.info(f"{__class__}.addLayout")
                 grid_layout.addLayout(

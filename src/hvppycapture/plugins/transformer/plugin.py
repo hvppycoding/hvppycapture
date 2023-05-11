@@ -47,7 +47,7 @@ class TransformerPlugin(Plugin):
 
     @on_plugin_available(plugin=Plugins.ClipboardWatcher)
     def on_clipboard_plugin_available(self):
-        logger.warn("clipboard available!")
+        logger.info("clipboard available!")
         clipboard_plugin: ClipboardWatcherPlugin = self.get_plugin(
             Plugins.ClipboardWatcher
         )

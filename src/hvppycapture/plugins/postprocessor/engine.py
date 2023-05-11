@@ -12,6 +12,7 @@ class PostProcessorEngine(QObject):
     FORMAT_KEY = "format"
     
     def __init__(self, parent: QObject = None) -> None:
+        QObject.__init__(self, parent)
         self._format = ""
         self._result = ""
         self._format_editor: Optional[QPlainTextEdit] = None
