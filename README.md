@@ -34,3 +34,6 @@ hvppycapture is a program that saves clipboard images to files.
 
 - Added an OCR feature
 
+## TO-DO
+
+- [ ] Keep recently used settings(multiple)
